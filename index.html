@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Мои Документы</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1a202c;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Контейнер приложения для имитации мобильного экрана на ПК */
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            position: relative;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Экраны */
+        .screen {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            padding: 16px;
+            padding-bottom: 90px; /* Отступ под нижнюю кнопку */
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* Верхняя панель навигации */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 0 20px 0;
+            background: #ffffff;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header h1 {
+            font-size: 21px;
+            font-weight: 700;
+            color: #1d2530;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* --- ЭКРАН 1: СПИСОК ДОКУМЕНТОВ --- */
+        .docs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .doc-card {
+            position: relative;
+            border-radius: 16px;
+            padding: 20px;
+            color: #ffffff;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .doc-card:active {
+            transform: scale(0.98);
+        }
+
+        /* Фоновые узоры для карточек */
+        .doc-card::after {
+            content: "";
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .card-passport {
+            background: linear-gradient(135deg, #b90e14 0%, #df2027 100%);
+        }
+        
+        /* Дополнительный элемент декора для паспорта */
+        .card-passport::before {
+            content: "";
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .card-snils {
+            background: linear-gradient(135deg, #0ba345 0%, #1ed760 100%);
+        }
+
+        .card-inn {
+            background: linear-gradient(135deg, #d9530f 0%, #f0ad4e 100%);
+        }
+
+        .doc-card h2 {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .doc-card p {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+
+        /* --- ЭКРАН 2: ДЕТАЛИ ПАСПОРТА --- */
+        .passport-container {
+            background-color: #f7eded;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            position: relative;
+        }
+
+        /* Водяной знак герба на фоне */
+        .passport-bg-watermark {
+            position: absolute;
+            left: -30px;
+            bottom: -20px;
+            width: 220px;
+            height: 220px;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        .passport-header-bar {
+            background-color: #8f1d2b;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .passport-body {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 105px 1fr;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Стилизаци силуэта фото */
+        .passport-photo-placeholder {
+            width: 105px;
+            height: 135px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .passport-photo-placeholder svg {
+            width: 90px;
+            height: 110px;
+            fill: #e2e8f0;
+        }
+
+        .passport-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .passport-row-full {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 11px;
+            color: #7a828a;
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: #1c2530;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        /* Номер паспорта с кнопкой копирования */
+        .passport-number-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .passport-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #8f1d2b;
+            letter-spacing: 0.5px;
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .doc-link {
+            color: #155ec4;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        /* Фиксированная кнопка внизу */
+        .bottom-action {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 448px;
+            z-index: 10;
+        }
+
+        .blue-btn {
+            width: 100%;
+            background-color: #155ec4;
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(21, 94, 196, 0.3);
+        }
+
+        .blue-btn:active {
+            background-color: #0f4eb0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- ЭКРАН 1: СПИСОК ДОКУМЕНТОВ -->
+        <div id="screen-list" class="screen active">
+            <div class="header">
+                <button class="back-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d2530" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </button>
+                <h1>Документы для предъяв...</h1>
+            </div>
+
+            <div class="docs-list">
+                <!-- Карточка Паспорта (Кликабельная) -->
+                <div class="doc-card card-passport" onclick="switchScreen('screen-details')">
+                    <h2>Паспорт РФ</h2>
+                    <p>4623 265488</p>
+                </div>
+
+                <!-- Карточка СНИЛС -->
+                <div class="doc-card card-snils">
+                    <h2>СНИЛС</h2>
+                    <p>189-326-172 05</p>
+                </div>
+
+                <!-- Карточка ИНН -->
+                <div class="doc-card card-inn">
+                    <h2>ИНН</h2>
+                    <p>504418044558</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ЭКРАН 2: ДЕТАЛИ ПАСПОРТА -->
+        <div id="screen-details" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="switchScreen('screen-list')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d2530" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </button>
+                <h1>Паспорт РФ</h1>
+            </div>
+
+            <div class="passport-container">
+                <!-- Векторный фоновый знак герба -->
+                <svg class="passport-bg-watermark" viewBox="0 0 24 24" fill="none" stroke="#8f1d2b" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/></svg>
+                
+                <div class="passport-header-bar">Российская Федерация</div>
+                
+                <div class="passport-body">
+                    <!-- Фото-заглушка силуэта -->
+                    <div class="passport-photo-placeholder">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+
+                    <!-- Правая колонка основных данных -->
+                    <div class="passport-info">
+                        <div class="info-block">
+                            <div class="passport-number-container">
+                                <span class="passport-number">4623 265488</span>
+                                <button class="copy-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8f1d2b" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <span class="info-label">Кем выдан</span>
+                            <span class="info-value">ГУ МВД РОССИИ ПО МОСКОВСКОЙ ОБЛ.</span>
+                        </div>
+                    </div>
+
+                    <!-- Нижние строки во всю ширину -->
+                    <div class="passport-row-full">
+                        <div class="grid-2col">
+                            <div class="info-block">
+                                <span class="info-label">Дата выдачи</span>
+                                <span class="info-value">02.11.2021</span>
+                            </div>
+                            <div class="info-block">
+                                <span class="info-label">Код подразделения</span>
+                                <span class="info-value">500-145</span>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <span class="info-label">ФИО</span>
+                            <span class="info-value">ЯРМАК БОГДАН АЛЕКСАНДРОВИЧ</span>
+                        </div>
+
+                        <div class="grid-2col">
+                            <div class="info-block">
+                                <span class="info-label">Пол</span>
+                                <span class="info-value">М</span>
+                            </div>
+                            <div class="info-block">
+                                <span class="info-label">Дата рождения</span>
+                                <span class="info-value">23.10.2007</span>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <span class="info-label">Место рождения</span>
+                            <span class="info-value">РОССИЯ, ГОРОД СОЛНЕЧНОГОРСК МОСКОВСКАЯ ОБЛАСТЬ РОССИЯ</span>
+                        </div>
+
+                        <div>
+                            <a href="#" class="doc-link" onclick="alert('Открытие деталей...'); return false;">детали документа</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Фиксированная нижняя синяя кнопка -->
+            <div class="bottom-action">
+                <button class="blue-btn" onclick="alert('Код предъявления сгенерирован')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    Предъявить в МАХ
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Скрипт переключения экранов -->
+    <script>
+        function switchScreen(screenId) {
+            // Прячем все экраны
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            // Показываем нужный
+            document.getElementById(screenId).classList.add('active');
+            // Скроллим наверх при переключении
+            window.scrollTo(0, 0);
+        }
+    </script>
+    <!-- В самом низу перед </body> -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('PWA успешно активировано!', reg))
+                .catch(err => console.log('Ошибка при запуске PWA:', err));
+        });
+    }
+</script>
+</body>
+</html>
