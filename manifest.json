@@ -1,6 +1,6 @@
 {
   "name": "Мои Документы",
-  "short_name": "Документы",
+  "short_name": "Госуслуги",
   "description": "Приложение для удобного просмотра и предъявления документов",
   "start_url": "./index.html",
   "display": "standalone",
