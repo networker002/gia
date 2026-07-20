@@ -21,6 +21,10 @@
             justify-content: center;
         }
 
+        :root {
+            --p-red: #991427;
+        }
+
         /* Контейнер приложения для имитации мобильного экрана на ПК */
         .app-container {
             width: 100%;
@@ -163,8 +167,8 @@
 
         /* --- ЭКРАН 2: ДЕТАЛИ ПАСПОРТА --- */
         .passport-container {
-            background-color: #f7eded;
-            border-radius: 20px;
+            background-color: #F5E7E7;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             position: relative;
@@ -182,13 +186,12 @@
         }
 
         .passport-header-bar {
-            background-color: #8f1d2b;
+            background-color: var(--p-red);
             color: #ffffff;
             text-align: center;
             padding: 10px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 1px;
             text-transform: uppercase;
             font-family:'Times New Roman', Times, serif;
         }
@@ -200,8 +203,9 @@
             grid-template-columns: 105px 1fr;
             gap: 16px;
             row-gap: 0;
-            position: relative;
+            position: relative;     
             z-index: 1;
+            max-height: 400px;
         }
 
         /* Стилизаци силуэта фото */
@@ -219,7 +223,7 @@
 
         .passport-photo-placeholder svg {
             width: 109px;
-            height: 130px;
+            height: 133px;
             fill: #e2e8f0;
             
         }
@@ -236,7 +240,7 @@
             flex-direction: column;
             gap: 12px;
             padding-left: 120px;
-            transform: translateY(-20px);
+            transform: translateY(-35px);
         }
 
         .info-block {
@@ -269,7 +273,7 @@
         .passport-number {
             font-size: 20px;
             font-weight: 700;
-            color: #8f1d2b;
+            color: var(--p-red);
             letter-spacing: 0.5px;
         }
 
