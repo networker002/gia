@@ -83,8 +83,19 @@
         }
 
         @keyframes done {
-            50% {
-                transform: translateY(-8px);
+
+            33.33% {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            66.66% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
 
@@ -178,14 +189,15 @@
                             btn.parentElement.style.animation = "done 1.5s ease-in-out infinite";
                             btn.parentElement.style.animationDelay = counter*100 + "ms";
                         })
-                        setTimeout(() => {window.location.href = "index.html"; clicks = 0; arr = []; inputed.forEach(rect => rect.setAttribute('fill', '#98A4BA'));
-                        document.querySelectorAll('.number-input svg').forEach(svg => svg.classList.remove('inputed'));}, 1000);
+                        setTimeout(() => {window.location.href = "index.html"; clicks = 0; arr = []; inputed.forEach(rect => {rect.setAttribute('fill', '#98A4BA'); rect.parentElement.style.animation = ""});
+                        document.querySelectorAll('.number-input svg').forEach(svg => svg.classList.remove('inputed'));}, 2000);
                     } else {
                         //alert("Пароль неверный!");
                         arr = [];
                         navigator.vibrate([100, 50, 100])
-                        inputed.forEach(rect => rect.setAttribute('fill', '#98A4BA'));
+                        inputed.forEach(rect => {rect.setAttribute('fill', '#98A4BA'); rect.parentElement.style.animation = ""});
                         document.querySelectorAll('.number-input svg').forEach(svg => svg.classList.remove('inputed'));
+                        
                     }
                     console.log(arr.join(''));
                     clicks = 0;
