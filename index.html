@@ -95,7 +95,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             transition: scale .2s ease;
             height: 150px;
-            transform: translateY(-20px);
+            transform: translateY(-60px);
         }
 
         .doc-card:first-child {
@@ -103,7 +103,7 @@
         }
 
         .doc-card:nth-child(3) {
-            transform: translateY(-40px);
+            transform: translateY(-120px);
         }
 
 
@@ -128,6 +128,7 @@
 
         .card-passport {
             background: linear-gradient(135deg, #b90e14 0%, #df2027 100%);
+            border: solid 2px #df2027;
         }
         
         /* Дополнительный элемент декора для паспорта */
@@ -144,10 +145,12 @@
 
         .card-snils {
             background: linear-gradient(135deg, #0ba345 0%, #1ed760 100%);
+            border: solid 2px #1ed760;
         }
 
         .card-inn {
-            background: linear-gradient(135deg, #d9530f 0%, #f0ad4e 100%);
+            background: linear-gradient(135deg, #df3207 0%, #f39f2a 100%);
+            border: solid 2px #f0ad4e;
         }
 
         .doc-card h2 {
@@ -332,12 +335,108 @@
         .blue-btn:active {
             background-color: #0f4eb0;
         }
+
+        .snils-container {
+            background: #E8F3ED;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .snils-header {
+            background: #E0EBE5;
+            padding: 14px;
+            padding-top: 16px;
+            font-size: 10px;
+            text-align: center;
+            border-radius: 14px 14px 0 0;
+            letter-spacing: -0.5px;
+
+            h1 {
+                color: #9BA79D;
+                font-size: 15px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 700;
+            }
+
+            h2 {
+                color: #97A29A;
+                font-family: 'Times New Roman', Times, serif;
+                font-weight: 300;
+                font-size: 13px;
+            }
+        }
+
+        .snils-content {
+            padding: 20px;
+            padding-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+
+            span {
+                color: #495259;
+                font-size: 13px;
+                letter-spacing: 0.25px;
+            }
+
+            p {
+                color: #080C0B;
+                font-size: 14px;
+                padding-top: 2px;
+            }
+        }
+
+        .snils-numbers {
+            color: #545E56;
+            font-weight: 760;
+            letter-spacing: 1px;
+            font-size: 17px;
+        }
+
+        /* @keyframes flash {
+            50% {
+                opacity: 0.1;
+            }
+        } */
+
+        #alerter {
+            background-color: #485367;
+            position: absolute;
+            bottom: 30px;
+            left: 50%; 
+            transform: translateX(-50%);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            gap: 10px;
+            min-width: 250px;
+
+            p {
+                color: #fff;
+                font-size: 10px;
+                letter-spacing: 0.5px;
+                line-height: 1.3;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
+    
 
+    <!-- <div id="flash" style="opacity: 0; background-color: #ffffff; width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;"></div> -->
+
+    <div class="app-container">
+        <div id="alerter">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="scale: 1;">
+<rect x="8" y="7" width="16" height="19" fill="#F3F3F3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M29.3333 16C29.3333 8.63596 23.364 2.66663 16 2.66663C8.63599 2.66663 2.66666 8.63596 2.66666 16C2.66666 23.364 8.63599 29.3333 16 29.3333C23.364 29.3333 29.3333 23.364 29.3333 16ZM16 9.33329C16.3536 9.33329 16.6928 9.47377 16.9428 9.72382C17.1928 9.97387 17.3333 10.313 17.3333 10.6666V17.3333C17.3333 17.6869 17.1928 18.0261 16.9428 18.2761C16.6928 18.5262 16.3536 18.6666 16 18.6666C15.6464 18.6666 15.3072 18.5262 15.0572 18.2761C14.8071 18.0261 14.6667 17.6869 14.6667 17.3333V10.6666C14.6667 10.313 14.8071 9.97387 15.0572 9.72382C15.3072 9.47377 15.6464 9.33329 16 9.33329ZM14.6667 21.3333C14.6667 20.9797 14.8071 20.6405 15.0572 20.3905C15.3072 20.1404 15.6464 20 16 20H16.0107C16.3643 20 16.7034 20.1404 16.9535 20.3905C17.2035 20.6405 17.344 20.9797 17.344 21.3333C17.344 21.6869 17.2035 22.0261 16.9535 22.2761C16.7034 22.5262 16.3643 22.6666 16.0107 22.6666H16C15.6464 22.6666 15.3072 22.5262 15.0572 22.2761C14.8071 22.0261 14.6667 21.6869 14.6667 21.3333Z" fill="#FF3B2F"/>
+</svg>
+<p>Возможно, у вас подключён VPN. <br> Отключите его, если возникают проблемы при работе приложения</p><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="scale: 1.25">
+<path d="M11.2013 21.7773L10.2227 20.808L15.0213 16L10.2227 11.2266L11.2013 10.256L16 15.0533L20.7653 10.2573L21.744 11.2266L16.9453 16L21.744 20.808L20.7653 21.7773L16 16.9826L11.2013 21.7773Z" fill="#828DA1"/>
+</svg>
+
+    </div>
         <!-- ЭКРАН 1: СПИСОК ДОКУМЕНТОВ -->
         <div id="screen-list" class="screen active">
             <div class="header">
@@ -355,7 +454,7 @@
                 </div>
 
                 <!-- Карточка СНИЛС -->
-                <div class="doc-card card-snils">
+                <div class="doc-card card-snils" onclick="switchScreen('screen-details-snils')">
                     <h2>СНИЛС</h2>
                     <p>189-326-172 05</p>
                 </div>
@@ -371,7 +470,7 @@
         <!-- ЭКРАН 2: ДЕТАЛИ ПАСПОРТА -->
         <div id="screen-details" class="screen">
             <div class="header">
-                <button class="back-btn" onclick="switchScreen('screen-list')">
+                <button class="back-btn" onclick="switchScreen('screen-list');  document.getElementById('alerter').style.bottom = '30px';">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 </button>
                 <h1>Паспорт РФ</h1>
@@ -469,8 +568,55 @@
             <!-- Фиксированная нижняя синяя кнопка -->
             <div class="bottom-action">
                 <button class="blue-btn" onclick="alert('Код предъявления сгенерирован')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="scale: .8">
+<g clip-path="url(#clip0_94_6)">
+<path d="M20 26.6667H24C24.7072 26.6667 25.3855 26.3857 25.8856 25.8856C26.3857 25.3855 26.6667 24.7072 26.6667 24V20C26.6667 19.6464 26.8071 19.3072 27.0572 19.0572C27.3072 18.8071 27.6464 18.6667 28 18.6667C28.3536 18.6667 28.6928 18.8071 28.9428 19.0572C29.1928 19.3072 29.3333 19.6464 29.3333 20V24C29.3333 25.4145 28.7714 26.771 27.7712 27.7712C26.771 28.7714 25.4145 29.3333 24 29.3333H7.99999C6.5855 29.3333 5.22895 28.7714 4.22875 27.7712C3.22856 26.771 2.66666 25.4145 2.66666 24V20C2.66666 19.6464 2.80713 19.3072 3.05718 19.0572C3.30723 18.8071 3.64637 18.6667 3.99999 18.6667C4.35361 18.6667 4.69275 18.8071 4.9428 19.0572C5.19285 19.3072 5.33332 19.6464 5.33332 20V24C5.33332 24.7072 5.61427 25.3855 6.11437 25.8856C6.61447 26.3857 7.29275 26.6667 7.99999 26.6667H12C12.3536 26.6667 12.6928 26.8071 12.9428 27.0572C13.1928 27.3072 13.3333 27.6464 13.3333 28C13.3333 28.3536 13.1928 28.6928 12.9428 28.9428C12.6928 29.1929 12.3536 29.3333 12 29.3333H20C19.6464 29.3333 19.3072 29.1929 19.0572 28.9428C18.8071 28.6928 18.6667 28.3536 18.6667 28C18.6667 27.6464 18.8071 27.3072 19.0572 27.0572C19.3072 26.8071 19.6464 26.6667 20 26.6667ZM5.33332 12C5.33332 12.3536 5.19285 12.6928 4.9428 12.9428C4.69275 13.1929 4.35361 13.3333 3.99999 13.3333C3.64637 13.3333 3.30723 13.1929 3.05718 12.9428C2.80713 12.6928 2.66666 12.3536 2.66666 12V8.00001C2.66666 6.58552 3.22856 5.22896 4.22875 4.22877C5.22895 3.22858 6.5855 2.66667 7.99999 2.66667L12 2.66667C12.3536 2.66667 12.6928 2.80715 12.9428 3.0572C13.1928 3.30724 13.3333 3.64638 13.3333 4.00001C13.3333 4.35363 13.1928 4.69277 12.9428 4.94281C12.6928 5.19286 12.3536 5.33334 12 5.33334H7.99999C7.29275 5.33334 6.61447 5.61429 6.11437 6.11439C5.61427 6.61448 5.33332 7.29276 5.33332 8.00001V12ZM26.6667 12V8.00001C26.6667 7.29276 26.3857 6.61448 25.8856 6.11439C25.3855 5.61429 24.7072 5.33334 24 5.33334H20C19.6464 5.33334 19.3072 5.19286 19.0572 4.94281C18.8071 4.69277 18.6667 4.35363 18.6667 4.00001C18.6667 3.64638 18.8071 3.30724 19.0572 3.0572C19.3072 2.80715 19.6464 2.66667 20 2.66667H24C25.4145 2.66667 26.771 3.22858 27.7712 4.22877C28.7714 5.22896 29.3333 6.58552 29.3333 8.00001V12C29.3333 12.3536 29.1928 12.6928 28.9428 12.9428C28.6928 13.1929 28.3536 13.3333 28 13.3333C27.6464 13.3333 27.3072 13.1929 27.0572 12.9428C26.8071 12.6928 26.6667 12.3536 26.6667 12Z" fill="white"/>
+<path d="M12.8995 18.7988L15.1729 20.6035L14.1416 21.5L11.9034 19.707L12.8995 18.7988ZM15.2139 15.5176V15.957C15.2139 16.6016 15.128 17.1816 14.9561 17.6973C14.7842 18.209 14.5381 18.6445 14.2178 19.0039C13.9014 19.3633 13.5245 19.6387 13.087 19.8301C12.6495 20.0215 12.1651 20.1172 11.6338 20.1172C11.1065 20.1172 10.6221 20.0215 10.1807 19.8301C9.7432 19.6387 9.3643 19.3633 9.04398 19.0039C8.72367 18.6445 8.47563 18.209 8.29984 17.6973C8.12406 17.1816 8.03617 16.6016 8.03617 15.957V15.5176C8.03617 14.8691 8.12211 14.2891 8.29398 13.7773C8.46977 13.2656 8.71586 12.8301 9.03227 12.4707C9.35258 12.1074 9.73148 11.8301 10.169 11.6387C10.6104 11.4473 11.0948 11.3516 11.6221 11.3516C12.1534 11.3516 12.6377 11.4473 13.0752 11.6387C13.5166 11.8301 13.8955 12.1074 14.212 12.4707C14.5323 12.8301 14.7784 13.2656 14.9502 13.7773C15.126 14.2891 15.2139 14.8691 15.2139 15.5176ZM13.585 15.957V15.5059C13.585 15.041 13.542 14.6328 13.4561 14.2812C13.3702 13.9258 13.2413 13.627 13.0694 13.3848C12.9014 13.1426 12.6963 12.9609 12.4541 12.8398C12.212 12.7148 11.9346 12.6523 11.6221 12.6523C11.3135 12.6523 11.0381 12.7148 10.7959 12.8398C10.5538 12.9609 10.3487 13.1426 10.1807 13.3848C10.0127 13.627 9.88383 13.9258 9.79398 14.2812C9.70805 14.6328 9.66508 15.041 9.66508 15.5059V15.957C9.66508 16.418 9.70805 16.8262 9.79398 17.1816C9.88383 17.5371 10.0127 17.8379 10.1807 18.084C10.3526 18.3262 10.5596 18.5098 10.8018 18.6348C11.0479 18.7598 11.3252 18.8223 11.6338 18.8223C11.9463 18.8223 12.2237 18.7598 12.4659 18.6348C12.708 18.5098 12.9112 18.3262 13.0752 18.084C13.2432 17.8379 13.3702 17.5371 13.4561 17.1816C13.542 16.8262 13.585 16.418 13.585 15.957ZM17.6767 11.4688H20.7763C21.4248 11.4688 21.9814 11.5664 22.4463 11.7617C22.9111 11.957 23.2685 12.2461 23.5185 12.6289C23.7685 13.0117 23.8935 13.4824 23.8935 14.041C23.8935 14.4824 23.8154 14.8652 23.6591 15.1895C23.5029 15.5137 23.2822 15.7852 22.997 16.0039C22.7158 16.2227 22.3838 16.3945 22.0009 16.5195L21.497 16.7773H18.7607L18.749 15.5059H20.7939C21.1259 15.5059 21.4013 15.4473 21.6201 15.3301C21.8388 15.2129 22.0029 15.0508 22.1123 14.8438C22.2255 14.6367 22.2822 14.4004 22.2822 14.1348C22.2822 13.8496 22.2275 13.6035 22.1181 13.3965C22.0088 13.1855 21.8427 13.0234 21.6201 12.9102C21.3974 12.7969 21.1162 12.7402 20.7763 12.7402H19.288V20H17.6767V11.4688ZM22.4931 20L20.5185 16.1797L22.2236 16.1738L24.2216 19.918V20H22.4931Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_94_6">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
                     Предъявить в МАХ
+                </button>
+            </div>
+        </div>
+
+        <div id="screen-details-snils" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="switchScreen('screen-list'); document.getElementById('alerter').style.bottom = '30px';">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </button>
+                <h1>СНИЛС</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="position:absolute; right: 21px; top: 21px; color: #828282; scale: .75;"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M17 22q-1.25 0-2.125-.875T14 19q0-.15.075-.7L7.05 14.2q-.4.375-.925.588T5 15q-1.25 0-2.125-.875T2 12t.875-2.125T5 9q.6 0 1.125.213t.925.587l7.025-4.1q-.05-.175-.062-.337T14 5q0-1.25.875-2.125T17 2t2.125.875T20 5t-.875 2.125T17 8q-.6 0-1.125-.213T14.95 7.2l-7.025 4.1q.05.175.063.338T8 12t-.012.363t-.063.337l7.025 4.1q.4-.375.925-.587T17 16q1.25 0 2.125.875T20 19t-.875 2.125T17 22"/></svg>
+
+            </div>
+
+            <div class="snils-container">
+                <div class="snils-header"><h1>СТРАХОВОЕ СВИДЕТЕЛЬСТВО</h1><h2>ОБЯЗАТЕЛЬНОГО ПЕНСИОННОГО СТРАХОВАНИЯ</h2></div>
+                <div class="snils-content">
+                    <div class="snils-numbers">189-326-172 05 <button class="copy-btn" >
+                                    <svg width="24" height="24" viewBox="0 -6 28 28" fill="none" stroke="#545E56" stroke-width=".75" xmlns="http://www.w3.org/2000/svg" style="scale:1.1">
+<path d="M14.884 7C15.3447 7 15.729 7.154 16.037 7.462C16.345 7.77 16.4993 8.15433 16.5 8.615V19.385C16.5 19.845 16.3457 20.2293 16.037 20.538C15.7283 20.8467 15.344 21.0007 14.884 21H7.115C6.655 21 6.27066 20.846 5.962 20.538C5.65333 20.23 5.49933 19.8457 5.5 19.385V8.615C5.5 8.155 5.654 7.771 5.962 7.463C6.27 7.155 6.65466 7.00066 7.116 7H14.884ZM14.884 8H7.115C6.96166 8 6.82066 8.064 6.692 8.192C6.56333 8.32 6.49933 8.461 6.5 8.615V19.385C6.5 19.5383 6.564 19.6793 6.692 19.808C6.82 19.9367 6.96133 20.0007 7.116 20H14.884C15.038 20 15.1793 19.936 15.308 19.808C15.4367 19.68 15.5007 19.539 15.5 19.385V8.615C15.5 8.46166 15.436 8.32067 15.308 8.192C15.18 8.06333 15.039 7.99933 14.885 8M17.885 4C18.345 4 18.7293 4.154 19.038 4.462C19.3467 4.77 19.5007 5.15433 19.5 5.615V17.385H18.5V5.615C18.5 5.46166 18.436 5.32066 18.308 5.192C18.18 5.06333 18.039 4.99933 17.885 5H9.115V4H17.885Z" fill="black"/>
+</svg>
+
+                                    <!--<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8f1d2b" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>-->
+                                </button></div>
+                    <div class="snils-fio"><span>ФИО</span><br><p>ЯРМАК БОГДАН АЛЕКСАНДРОВИЧ</p></div>
+                    <div class="snils-dr"><span>Дата и место рождения</span><br><p>23 ОКТЯБРЯ 2007 ГОДА РОССИЯ, ГОРОД СОЛНЕЧНОГОРСК МОСКОВСКАЯ ОБЛАСТЬ РОССИЯ</p></div>
+                    <div class="snils-g"><span>Пол</span><p>МУЖСКОЙ</p></div>
+                    <div>
+                            <a href="#" class="doc-link" onclick="alert('Открытие деталей...'); return false;">детали документа</a>
+                        </div>
+                </div>
+            </div>
+
+            <div class="bottom-action">
+                <button class="blue-btn" onclick="alert('Код предъявления сгенерирован')">
+                    Предъявить 
                 </button>
             </div>
         </div>
@@ -485,10 +631,28 @@
                 screen.classList.remove('active');
             });
             // Показываем нужный
+            // document.getElementById("flash").style.animation = "flash 0.5s";
+            document.getElementById("alerter").style.bottom = "100px";
             document.getElementById(screenId).classList.add('active');
+            // setTimeout(() => {
+            //     document.getElementById("flash").style.animation = "";
+            // }, 500);
             // Скроллим наверх при переключении
             window.scrollTo(0, 0);
         }
+        document.getElementById("alerter").style.display = "none";
+        setTimeout(() => {
+            document.getElementById("alerter").style.display = "flex";
+        }, 1000 * Math.random());
+        document.getElementById("alerter").addEventListener("click", () => {
+            document.getElementById("alerter").style.display = "none";
+        });
+
+        setTimeout(() => {
+            if( document.getElementById('alerter').style.display !== "none"){
+             document.getElementById('alerter').style.display = 'none';
+            }
+        }, 7000);
     </script>
     <!-- В самом низу перед </body> -->
 <script>
