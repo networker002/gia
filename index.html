@@ -460,6 +460,65 @@
                 font-size: 14px;
             }
         }
+
+        .inn-container {
+            background: #F6F2E9;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+
+
+        .inn-header {
+            background: #F3E7D7;
+            border-radius: 12px 12px 0 0;
+            padding: 14px;
+            text-align: center;
+
+            h4 {
+                color: #7D6951;
+                letter-spacing: 0.5px;
+                line-height: 1.3;
+            }
+
+            h5 {
+                font-weight: 250;
+                color: #7E6C56;
+                letter-spacing: -0.5px;
+            }
+        }
+
+        .inn-body {
+            padding: 20px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            span {
+                color: #4E505D;
+                opacity: 0.9;
+                font-size: 13px;
+            }
+
+            p {
+                font-size: 14px;
+                font-weight: 530;
+                color: #000;
+            }
+        }
+
+        .inn-numbers {
+            color: #816B53;
+            font-weight: 700;
+            letter-spacing: .75px;
+            span {font-size: 18px !important;}
+        }
+
+        .inn-g {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+        }
     </style>
 </head>
 <body>
@@ -492,19 +551,19 @@
                 <!-- Карточка Паспорта (Кликабельная) -->
                 <div class="doc-card card-passport" onclick="switchScreen('screen-details')">
                     <h2>Паспорт РФ</h2>
-                    <p>4623 265488</p>
+                    <p id="1"></p>
                 </div>
 
                 <!-- Карточка СНИЛС -->
                 <div class="doc-card card-snils" onclick="switchScreen('screen-details-snils')">
                     <h2>СНИЛС</h2>
-                    <p>189-326-172 05</p>
+                    <p id="2"></p>
                 </div>
 
                 <!-- Карточка ИНН -->
-                <div class="doc-card card-inn">
+                <div class="doc-card card-inn" onclick="switchScreen('screen-details-inn')">
                     <h2>ИНН</h2>
-                    <p>504418044558</p>
+                    <p id="3"></p>
                 </div>
             </div>
         </div>
@@ -549,7 +608,7 @@
                     <div class="passport-info">
                         <div class="info-block">
                             <div class="passport-number-container">
-                                <span class="passport-number">4623 265488</span>
+                                <span class="passport-number" id="4"></span>
                                 <button class="copy-btn">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8f1d2b" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.884 7C15.3447 7 15.729 7.154 16.037 7.462C16.345 7.77 16.4993 8.15433 16.5 8.615V19.385C16.5 19.845 16.3457 20.2293 16.037 20.538C15.7283 20.8467 15.344 21.0007 14.884 21H7.115C6.655 21 6.27066 20.846 5.962 20.538C5.65333 20.23 5.49933 19.8457 5.5 19.385V8.615C5.5 8.155 5.654 7.771 5.962 7.463C6.27 7.155 6.65466 7.00066 7.116 7H14.884ZM14.884 8H7.115C6.96166 8 6.82066 8.064 6.692 8.192C6.56333 8.32 6.49933 8.461 6.5 8.615V19.385C6.5 19.5383 6.564 19.6793 6.692 19.808C6.82 19.9367 6.96133 20.0007 7.116 20H14.884C15.038 20 15.1793 19.936 15.308 19.808C15.4367 19.68 15.5007 19.539 15.5 19.385V8.615C15.5 8.46166 15.436 8.32067 15.308 8.192C15.18 8.06333 15.039 7.99933 14.885 8M17.885 4C18.345 4 18.7293 4.154 19.038 4.462C19.3467 4.77 19.5007 5.15433 19.5 5.615V17.385H18.5V5.615C18.5 5.46166 18.436 5.32066 18.308 5.192C18.18 5.06333 18.039 4.99933 17.885 5H9.115V4H17.885Z" fill="black"/>
@@ -562,7 +621,7 @@
 
                         <div class="info-block">
                             <span class="info-label">Кем выдан</span>
-                            <span class="info-value">ГУ МВД РОССИИ ПО МОСКОВСКОЙ ОБЛ.</span>
+                            <span class="info-value" id="5"></span>
                         </div>
                     </div>
 
@@ -571,33 +630,33 @@
                         <div class="grid-2col">
                             <div class="info-block">
                                 <span class="info-label">Дата выдачи</span>
-                                <span class="info-value">02.11.2021</span>
+                                <span class="info-value" id="6"></span>
                             </div>
                             <div class="info-block">
                                 <span class="info-label">Код подразделения</span>
-                                <span class="info-value">500-145</span>
+                                <span class="info-value" id="7"></span>
                             </div>
                         </div>
 
                         <div class="info-block">
                             <span class="info-label">ФИО</span>
-                            <span class="info-value">ЯРМАК БОГДАН АЛЕКСАНДРОВИЧ</span>
+                            <span class="info-value" id="8"></span>
                         </div>
 
                         <div class="grid-2col">
                             <div class="info-block">
                                 <span class="info-label">Пол</span>
-                                <span class="info-value">М</span>
+                                <span class="info-value" id="9"></span>
                             </div>
                             <div class="info-block">
                                 <span class="info-label">Дата рождения</span>
-                                <span class="info-value">23.10.2007</span>
+                                <span class="info-value" id="10"></span>
                             </div>
                         </div>
 
                         <div class="info-block">
                             <span class="info-label">Место рождения</span>
-                            <span class="info-value">РОССИЯ, ГОРОД СОЛНЕЧНОГОРСК МОСКОВСКАЯ ОБЛАСТЬ РОССИЯ</span>
+                            <span class="info-value" id="11"></span>
                         </div>
 
                         <div>
@@ -640,16 +699,16 @@
             <div class="snils-container">
                 <div class="snils-header"><h1>СТРАХОВОЕ СВИДЕТЕЛЬСТВО</h1><h2>ОБЯЗАТЕЛЬНОГО ПЕНСИОННОГО СТРАХОВАНИЯ</h2></div>
                 <div class="snils-content">
-                    <div class="snils-numbers">189-326-172 05 <button class="copy-btn" >
+                    <div class="snils-numbers"><span style="font-size: 18px;" id="15"></span> <button class="copy-btn" >
                                     <svg width="24" height="24" viewBox="0 -6 28 28" fill="none" stroke="#545E56" stroke-width=".75" xmlns="http://www.w3.org/2000/svg" style="scale:1.1">
 <path d="M14.884 7C15.3447 7 15.729 7.154 16.037 7.462C16.345 7.77 16.4993 8.15433 16.5 8.615V19.385C16.5 19.845 16.3457 20.2293 16.037 20.538C15.7283 20.8467 15.344 21.0007 14.884 21H7.115C6.655 21 6.27066 20.846 5.962 20.538C5.65333 20.23 5.49933 19.8457 5.5 19.385V8.615C5.5 8.155 5.654 7.771 5.962 7.463C6.27 7.155 6.65466 7.00066 7.116 7H14.884ZM14.884 8H7.115C6.96166 8 6.82066 8.064 6.692 8.192C6.56333 8.32 6.49933 8.461 6.5 8.615V19.385C6.5 19.5383 6.564 19.6793 6.692 19.808C6.82 19.9367 6.96133 20.0007 7.116 20H14.884C15.038 20 15.1793 19.936 15.308 19.808C15.4367 19.68 15.5007 19.539 15.5 19.385V8.615C15.5 8.46166 15.436 8.32067 15.308 8.192C15.18 8.06333 15.039 7.99933 14.885 8M17.885 4C18.345 4 18.7293 4.154 19.038 4.462C19.3467 4.77 19.5007 5.15433 19.5 5.615V17.385H18.5V5.615C18.5 5.46166 18.436 5.32066 18.308 5.192C18.18 5.06333 18.039 4.99933 17.885 5H9.115V4H17.885Z" fill="black"/>
 </svg>
 
                                     <!--<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8f1d2b" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>-->
                                 </button></div>
-                    <div class="snils-fio"><span>ФИО</span><br><p>ЯРМАК БОГДАН АЛЕКСАНДРОВИЧ</p></div>
-                    <div class="snils-dr"><span>Дата и место рождения</span><br><p>23 ОКТЯБРЯ 2007 ГОДА РОССИЯ, ГОРОД СОЛНЕЧНОГОРСК МОСКОВСКАЯ ОБЛАСТЬ РОССИЯ</p></div>
-                    <div class="snils-g"><span>Пол</span><p>МУЖСКОЙ</p></div>
+                    <div class="snils-fio"><span>ФИО</span><br><p id="12"></p></div>
+                    <div class="snils-dr"><span>Дата и место рождения</span><br><p id="13"></p></div>
+                    <div class="snils-g"><span>Пол</span><p id="14"></p></div>
                     <div>
                             <a href="#" class="doc-link" onclick="alert('Открытие деталей...'); return false;">детали документа</a>
                         </div>
@@ -661,6 +720,38 @@
                     Предъявить 
                 </button>
             </div>
+        </div>
+
+        <div id="screen-details-inn" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="switchScreen('screen-list'); document.getElementById('alerter').style.bottom = '30px';">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </button>
+                <h1>ИНН</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="position:absolute; right: 21px; top: 21px; color: #828282; scale: .75;"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M17 22q-1.25 0-2.125-.875T14 19q0-.15.075-.7L7.05 14.2q-.4.375-.925.588T5 15q-1.25 0-2.125-.875T2 12t.875-2.125T5 9q.6 0 1.125.213t.925.587l7.025-4.1q-.05-.175-.062-.337T14 5q0-1.25.875-2.125T17 2t2.125.875T20 5t-.875 2.125T17 8q-.6 0-1.125-.213T14.95 7.2l-7.025 4.1q.05.175.063.338T8 12t-.012.363t-.063.337l7.025 4.1q.4-.375.925-.587T17 16q1.25 0 2.125.875T20 19t-.875 2.125T17 22"/></svg>
+            
+        </div>
+<div class="inn-container">
+            
+        <div class="inn-header">
+                    <h4>СВИДЕТЕЛЬСТВО</h4> <h5>О ПОСТАНОВКЕ НА УЧЕТ В НАЛОГОВОМ ОРГАНЕ</h5>
+                </div>
+                <div class="inn-body">
+                    <div class="inn-numbers"><span id="16"></span><button class="copy-btn" >
+                                    <svg width="24" height="24" viewBox="0 -6 28 28" fill="none" stroke="#9F8E7C" stroke-width=".75" xmlns="http://www.w3.org/2000/svg" style="scale:1.1">
+<path d="M14.884 7C15.3447 7 15.729 7.154 16.037 7.462C16.345 7.77 16.4993 8.15433 16.5 8.615V19.385C16.5 19.845 16.3457 20.2293 16.037 20.538C15.7283 20.8467 15.344 21.0007 14.884 21H7.115C6.655 21 6.27066 20.846 5.962 20.538C5.65333 20.23 5.49933 19.8457 5.5 19.385V8.615C5.5 8.155 5.654 7.771 5.962 7.463C6.27 7.155 6.65466 7.00066 7.116 7H14.884ZM14.884 8H7.115C6.96166 8 6.82066 8.064 6.692 8.192C6.56333 8.32 6.49933 8.461 6.5 8.615V19.385C6.5 19.5383 6.564 19.6793 6.692 19.808C6.82 19.9367 6.96133 20.0007 7.116 20H14.884C15.038 20 15.1793 19.936 15.308 19.808C15.4367 19.68 15.5007 19.539 15.5 19.385V8.615C15.5 8.46166 15.436 8.32067 15.308 8.192C15.18 8.06333 15.039 7.99933 14.885 8M17.885 4C18.345 4 18.7293 4.154 19.038 4.462C19.3467 4.77 19.5007 5.15433 19.5 5.615V17.385H18.5V5.615C18.5 5.46166 18.436 5.32066 18.308 5.192C18.18 5.06333 18.039 4.99933 17.885 5H9.115V4H17.885Z" fill="black"/>
+</svg>
+
+                                    <!--<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8f1d2b" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>-->
+                                </button></div>
+                    <div class="inn-fio"><span>ФИО</span><br><p id="17"></p></div>
+                    <div class="inn-g"><div><span>Пол</span><p id="18"></p></div><div><span>Дата рождения</span><p id="19"></p></div></div>
+                    <div class="inn-b"><span>Место рождения</span><p id="20"></p></div>
+                    <div>
+                            <a href="#" class="doc-link" onclick="alert('Открытие деталей...'); return false;">детали документа</a>
+                        </div>
+                </div>
+                </div>
         </div>
 
         <div id="screen-max" class="screen">
@@ -709,6 +800,14 @@
              document.getElementById('alerter').style.display = 'none';
             }
         }, 7000);
+
+        
+        if (localStorage.getItem("data")) {
+            let s = JSON.parse(localStorage.getItem("data"));
+            for (let i = 1; i <= Object.keys(s).length; i++) {
+                document.getElementById(i).innerHTML = s[i];
+            }
+        }
     </script>
     <!-- В самом низу перед </body> -->
 <script>
